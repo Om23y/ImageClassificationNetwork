@@ -2,11 +2,11 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
-from data import small_trainloader
+from data import small_trainloader, trainloader
 
 
-
-
+printsPerEpoch = 24
+used_trainloader = trainloader
 
 # Define the CNN Model
 class Net(nn.Module):
@@ -35,37 +35,28 @@ class Net(nn.Module):
 
 # Initialize the network
 def train():
-    # Initialize the network
-    net = Net()
-
-# Specify the loss function and optimizer
+    net = Net()  # Initialize the network
+    
+    # Specify the loss function and optimizer
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
 
-# Training loop
-    for epoch in range(10):  # loop over the dataset multiple times
-
+    # Training loop
+    for epoch in range(3):  # loop over the dataset multiple times
         running_loss = 0.0
-        for i, data in enumerate(small_trainloader, 0):
-            # get the inputs; data is a list of [inputs, labels]
+        for i, data in enumerate(trainloader, 0):
             inputs, labels = data
-
-            # zero the parameter gradients
             optimizer.zero_grad()
-
-            # forward + backward + optimize
             outputs = net(inputs)
             loss = criterion(outputs, labels)
             loss.backward()
             optimizer.step()
-
-            # print statistics
             running_loss += loss.item()
-            if i % 10 == 0:    # print every 10 mini-batches
-                print(f'[{epoch + 1}, {i + 1:5d}] loss: {running_loss / 2000:.3f}')
+            if i % printsPerEpoch == 0:
+                print(f'[{epoch + 1}, {i + 1:5d}] loss: {running_loss / printsPerEpoch:.3f}')
                 running_loss = 0.0
-
-print('Finished Training')
+    print('Finished Training')
+    return net  # Return the trained model
 
 if __name__ == '__main__':
     train()
