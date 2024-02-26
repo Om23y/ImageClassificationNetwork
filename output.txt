@@ -1,0 +1,25 @@
+[1,  2000] loss: 2.303
+[1,  4000] loss: 2.301
+[1,  6000] loss: 2.249
+[1,  8000] loss: 2.003
+[1, 10000] loss: 1.832
+[1, 12000] loss: 1.705
+[2,  2000] loss: 1.598
+[2,  4000] loss: 1.536
+[2,  6000] loss: 1.491
+[2,  8000] loss: 1.435
+[2, 10000] loss: 1.398
+[2, 12000] loss: 1.357
+[3,  2000] loss: 1.292
+[3,  4000] loss: 1.256
+[3,  6000] loss: 1.243
+[3,  8000] loss: 1.202
+[3, 10000] loss: 1.177
+[3, 12000] loss: 1.190
+Finished Training CNN + FC network
+Training accuracy of the CNN + FC network: 58 %
+Accuracy of the CNN + FC network on the 10000 test images: 56 %
+Training accuracy of extracted features + Random Forest: 100.00%
+Testing accuracy of extracted features + Random Forest: 58.67%
+
+[Done] exited with code=0 in 1098.727 seconds
